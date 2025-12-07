@@ -128,41 +128,6 @@
     
     <script src="js/latest.js" data-utmify-prevent-subids="" async="" defer="defer"></script>
 
-    <!-- Script para detectar fim do vídeo e mostrar botão de checkout -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const player = document.querySelector('vturb-smartplayer');
-        const checkoutContainer = document.getElementById('checkout-button-container');
-        
-        if (player) {
-          // Aguarda o player estar pronto
-          player.addEventListener('player:ready', function() {
-            console.log('Player pronto');
-            
-            // Observa o evento de término do vídeo
-            player.addEventListener('player:ended', function() {
-              console.log('Vídeo finalizado');
-              checkoutContainer.style.display = 'flex';
-            });
-            
-            // Também observa pausa próximo ao final (90%+)
-            player.addEventListener('player:timeupdate', function(event) {
-              const duration = event.detail?.duration || player.duration;
-              const currentTime = event.detail?.currentTime || player.currentTime;
-              
-              if (duration && currentTime && (currentTime / duration) >= 0.9 && !checkoutContainer.dataset.shown) {
-                // Mostrar após 2 segundos da última parte
-                setTimeout(() => {
-                  checkoutContainer.style.display = 'flex';
-                  checkoutContainer.dataset.shown = 'true';
-                }, 2000);
-              }
-            });
-          });
-        }
-      });
-    </script>
-
     <div class="a-s-d-ob2ipl a-b-cont">
       <div class="a-b-o-cont atomicat-container-64e752a">
         
@@ -210,15 +175,19 @@
                           var s = document.createElement("script");
                           s.src = "https://scripts.converteai.net/6e3ae2f6-ad64-483b-9bc5-bafc50ec8005/players/69307b9df18bc19b7f3d19cf/v4/player.js", s.async = !0, document.head.appendChild(s);
                         </script>
-                        <!-- Botão de Checkout ao Final do Vídeo -->
-                        <div id="checkout-button-container" style="display:none !important;position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;z-index:1000;flex-direction:column;">
-                          <div style="text-align:center;padding:20px;">
-                            <h3 style="color:#fff;margin-bottom:20px;">Vídeo finalizado!</h3>
-                            <a id="checkout-button" href="https://pay.hotmart.com/U103307169B?checkoutMode=10" target="_blank" style="display:inline-block;background:#00d4ff;color:#000;padding:15px 40px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:18px;cursor:pointer;transition:background 0.3s;">
-                              Acessar Checkout
-                            </a>
-                          </div>
-                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Checkout embaixo do vídeo -->
+                    <div id="checkout-button-container" style="display:none;background:rgba(0,0,0,0.95);padding:30px 20px;text-align:center;margin-top:20px;border-radius:8px;">
+                      <div style="max-width:500px;margin:0 auto;">
+                        <h3 style="color:#fff;margin-bottom:20px;font-size:22px;">Oferta especial disponível!</h3>
+                        <a id="checkout-button" href="https://pay.hotmart.com/U103307169B?checkoutMode=10" target="_blank" style="display:inline-block;background:#00d4ff;color:#000;padding:15px 40px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:18px;cursor:pointer;transition:background 0.3s;margin-right:10px;">
+                          Aproveite agora mesmo
+                        </a>
+                        <button id="hide-checkout" style="background:#666;color:#fff;padding:15px 30px;border:none;border-radius:8px;cursor:pointer;font-size:16px;font-weight:bold;">
+                          Fechar
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -256,23 +225,61 @@
 
     <script src="js/WEXhLr0288309.js" charset="utf-8" id="a-js" defer="defer"></script>
     
-    <!-- Script para detectar fim do vídeo e mostrar botão de checkout -->
+    <!-- Script para controlar botão de checkout -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        const player = document.querySelector('vturb-smartplayer');
+        const testBtn = document.getElementById('test-checkout-btn');
+        const hideBtn = document.getElementById('hide-checkout');
         const checkoutContainer = document.getElementById('checkout-button-container');
-        let videoEnded = false;
         
-        if (player && checkoutContainer) {
-          // Aguarda o player estar pronto
-          player.addEventListener('player:ready', function() {
-            console.log('Player pronto - aguardando fim do vídeo');
-            
-            // Observa o evento de término do vídeo
-            player.addEventListener('player:ended', function() {
-              console.log('Vídeo finalizado!');
-              videoEnded = true;
+        // Botão de teste - mostrar checkout
+        if (testBtn) {
+          testBtn.addEventListener('click', function() {
+            console.log('Mostrando checkout...');
+            if (checkoutContainer) {
               checkoutContainer.style.display = 'flex';
+            }
+          });
+        }
+        
+        // Botão fechar - esconder checkout
+        if (hideBtn) {
+          hideBtn.addEventListener('click', function() {
+            console.log('Escondendo checkout...');
+            if (checkoutContainer) {
+              checkoutContainer.style.display = 'none';
+            }
+          });
+        }
+        
+        // Inicialmente esconde o checkout
+        if (checkoutContainer) {
+          checkoutContainer.style.display = 'none';
+        }
+        
+        // Mostra checkout após 8 minutos (480000ms)
+        setTimeout(function() {
+          console.log('8 minutos decorridos - mostrando checkout');
+          if (checkoutContainer) {
+            checkoutContainer.style.display = 'block';
+          }
+        }, 480000);
+        
+        // Detecta fim do vídeo (como backup)
+        const player = document.querySelector('vturb-smartplayer');
+        if (player) {
+          console.log('Player encontrado');
+          
+          // Listener para player pronto
+          player.addEventListener('player:ready', function() {
+            console.log('Player pronto');
+            
+            // Listener para fim do vídeo
+            player.addEventListener('player:ended', function() {
+              console.log('Vídeo terminou!');
+              if (checkoutContainer) {
+                checkoutContainer.style.display = 'flex';
+              }
             });
           });
         }
