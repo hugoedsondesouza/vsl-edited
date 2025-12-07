@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Título</title>
+    <meta name="robots" content="index, follow">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="description" content="Descrição">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.abundancefrequencies.site/jim">
+    <meta property="og:image" content="images/ogimage.png">
+
+    <style type="text/css" media="all">
+      :root {
+        /* ATENÇÃO: Bug detectado no código original: [object Object] */
+        --a-g-bg-color: [object Object]; 
+        --white: #ffffff
+      }
+
+      .a-cloned .a-c-cont { width: 100% }
+      html { scroll-behavior: smooth }
+      body {
+        font-family: Roboto, sans-serif;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+      }
+      *, ::after, ::before { margin: 0; padding: 0; box-sizing: border-box }
+      
+      /* Classes Utilitárias de Texto */
+      .ql-align-left { text-align: left }
+      .ql-align-center { text-align: center }
+      .ql-align-right { text-align: right }
+      .ql-align-justify { text-align: justify }
+      
+      @media screen and (max-width:480px) {
+        body { background: #000 }
+      }
+
+      /* Estilos Específicos do Atomicat (Layout e Componentes) */
+      .atomicat-interactive-quiz-progress { margin: 20px auto; padding: 0; max-width: 28rem; height: 10px; overflow: hidden; position: relative; border-radius: 1rem }
+      .atomicat-interactive-quiz-progress.atomicat-margin-top-zero { margin-top: 0 }
+      .a-txt-extra { padding: 1rem; border-radius: .375rem; line-height: 1.4; font-size: 16px; font-weight: 400 }
+      .a-txt-timer { line-height: 1.25; text-align: center; padding-left: 1.25rem; padding-right: 1.25rem }
+      
+      /* Cores de Alerta/Status */
+      .a-txt-extra.a-danger { color: rgb(185 28 28); background-color: rgb(254 226 226) }
+      .a-txt-extra.a-info { color: rgb(29 78 216); background-color: rgb(219 234 254) }
+      .a-txt-extra.a-success { color: rgb(21 128 61); background-color: rgb(220 252 231) }
+      .a-txt-extra.a-warning { color: rgb(161 98 7); background-color: rgb(254 249 195) }
+      .a-txt-extra.a-light { color: rgb(63 63 70); background-color: rgb(244 244 245) }
+      .a-hidden { display: none }
+      
+      button { border: none; outline: 0; background: 0 0; font-family: "Space Grotesk", sans-serif; cursor: pointer }
+      
+      /* Layout Flex e Grid System */
+      .flex-row { display: flex }
+      .flex-column { display: flex; flex-direction: column }
+      .flex-row-center { display: flex; justify-content: center; align-items: center }
+      .atomicat-container-64e752a > .a-o-cont { padding-top: 3%; padding-bottom: 3% }
+      .atomicat-container-64e752a > .a-o-cont > .a-cont { flex-direction: row }
+      
+      /* Animações */
+      .fadeIn { animation: fadeIn 1s ease-in-out }
+      @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+      
+      /* Video Player Container */
+      .a-video { overflow: hidden }
+      .a-video iframe { height: 100%; width: 100% }
+    </style>
+
+    <style>
+      .a-b-cont { overflow: hidden }
+    </style>
+
+    <script>
+      !function(i, n) {
+        i._plt = i._plt || (n && n.timeOrigin ? n.timeOrigin + n.now() : Date.now())
+      }(window, performance);
+    </script>
+
+    <link rel="preload" href="https://scripts.converteai.net/6e3ae2f6-ad64-483b-9bc5-bafc50ec8005/players/69307b9df18bc19b7f3d19cf/v4/player.js" as="script">
+    <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+    <link rel="preload" href="https://cdn.converteai.net/6e3ae2f6-ad64-483b-9bc5-bafc50ec8005/69307b93484a138d00bd427e/main.m3u8" as="fetch">
+    <link rel="dns-prefetch" href="https://cdn.converteai.net">
+    <link rel="dns-prefetch" href="https://scripts.converteai.net">
+    <link rel="dns-prefetch" href="https://images.converteai.net">
+    <link rel="dns-prefetch" href="https://api.vturb.com.br">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecg.woff2" crossorigin="">
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/roboto/v50/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbVmUiAo.woff2" crossorigin="">
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu173w5aXo.woff2" crossorigin="">
+
+    <style>
+      /* Font Faces (Montserrat, Poppins, Roboto) - Mantido inline para performance conforme original */
+      @font-face { font-family: Montserrat; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu173w5aXo.woff2) format('woff2'); }
+      @font-face { font-family: Poppins; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2'); }
+      @font-face { font-family: Roboto; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url(fonts/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbVmUiAo.woff2) format('woff2'); }
+    </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1459949635097620');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1459949635097620&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  
+  <body class="atomicat-disable-selection" data-variant="3b7oyh1rdl4" data-page-type="page" data-version="1.1" data-page="_kykYsC78zyWvV3N9icEc">
+    
+    <script src="js/latest.js" data-utmify-prevent-subids="" async="" defer="defer"></script>
+
+    <!-- Script para detectar fim do vídeo e mostrar botão de checkout -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const player = document.querySelector('vturb-smartplayer');
+        const checkoutContainer = document.getElementById('checkout-button-container');
+        
+        if (player) {
+          // Aguarda o player estar pronto
+          player.addEventListener('player:ready', function() {
+            console.log('Player pronto');
+            
+            // Observa o evento de término do vídeo
+            player.addEventListener('player:ended', function() {
+              console.log('Vídeo finalizado');
+              checkoutContainer.style.display = 'flex';
+            });
+            
+            // Também observa pausa próximo ao final (90%+)
+            player.addEventListener('player:timeupdate', function(event) {
+              const duration = event.detail?.duration || player.duration;
+              const currentTime = event.detail?.currentTime || player.currentTime;
+              
+              if (duration && currentTime && (currentTime / duration) >= 0.9 && !checkoutContainer.dataset.shown) {
+                // Mostrar após 2 segundos da última parte
+                setTimeout(() => {
+                  checkoutContainer.style.display = 'flex';
+                  checkoutContainer.dataset.shown = 'true';
+                }, 2000);
+              }
+            });
+          });
+        }
+      });
+    </script>
+
+    <div class="a-s-d-ob2ipl a-b-cont">
+      <div class="a-b-o-cont atomicat-container-64e752a">
+        
+        <style>
+          .atomicat-container-64e752a > .a-o-cont { padding-top: 3%; padding-bottom: 3% }
+          .atomicat-container-64e752a > .a-o-cont > .a-cont { flex-direction: row }
+          .a-b-cont .atomicat-container-64e752a.a-b-o-cont { background-size: cover; background-repeat: no-repeat; background-position: center }
+        </style>
+
+        <div class="a-cont-b a-o-cont">
+          <div class="a-cont a-i-cont a-s-d-bqs8t0">
+            <div class="a-b-o-cont a-u-2 atomicat-container-6200a61" data-hex="WUVKVhILo">
+              
+              <style>
+                .atomicat-container-6200a61 > .a-o-cont > .a-cont { flex-direction: column }
+                .a-b-cont .atomicat-container-6200a61.a-b-o-cont { background-size: cover; background-repeat: no-repeat; background-position: center; width: 100% }
+                @media screen and (max-width:480px) {
+                  .a-b-cont .atomicat-container-6200a61.a-b-o-cont { width: 100% }
+                }
+              </style>
+
+              <div class="a-cont-f-w a-o-cont">
+                <div class="a-cont a-i-cont">
+                  
+                  <div class="a-r a-c-cont-05ce597 a-c-cont a-s-d-65gaod">
+                    <style>
+                      .a-e-cont.atomicat-heading-title-05ce597 h2:hover { -webkit-text-fill-color: unset }
+                      .a-e-cont.atomicat-heading-title-05ce597 h2 { font-weight: 400; font-size: 24px; line-height: 36px; text-align: center }
+                      .a-c-cont-05ce597 > .a-e-cont { padding-top: 2% }
+                    </style>
+                    <div class="a-e-cont a-s-d-0ws29e atomicat-heading-title a-u-1 atomicat-element-container-05ce597 atomicat-heading-title-05ce597 atomicat-text-05ce597 a-r" data-hex="RwPiPWktUl">
+                       <h2 class="a-i-e-cont"></h2>
+                    </div>
+                  </div>
+
+                  <div class="a-r a-c-cont a-c-cont-c27c425">
+                    <style>
+                      .a-c-cont-c27c425 { width: 100% }
+                      .a-c-cont-c27c425 > .a-e-cont { padding-top: 2% }
+                    </style>
+                    <div class="a-u-3 a-s-d-dis2vn a-e-cont a-r atomicat-element-container-c27c425 a-video-c27c425 atomicat-video a-video" data-hex="RrAnzMNj1">
+                      <div style="aspect-ratio:1.77777;position:relative;">
+                        <vturb-smartplayer id="vid-69307b9df18bc19b7f3d19cf" style="display:block;margin:0 auto;width:100%;max-width:400px"></vturb-smartplayer>
+                        <script type="text/javascript">
+                          var s = document.createElement("script");
+                          s.src = "https://scripts.converteai.net/6e3ae2f6-ad64-483b-9bc5-bafc50ec8005/players/69307b9df18bc19b7f3d19cf/v4/player.js", s.async = !0, document.head.appendChild(s);
+                        </script>
+                        <!-- Botão de Checkout ao Final do Vídeo -->
+                        <div id="checkout-button-container" style="display:none !important;position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;z-index:1000;flex-direction:column;">
+                          <div style="text-align:center;padding:20px;">
+                            <h3 style="color:#fff;margin-bottom:20px;">Vídeo finalizado!</h3>
+                            <a id="checkout-button" href="https://pay.hotmart.com/U103307169B?checkoutMode=10" target="_blank" style="display:inline-block;background:#00d4ff;color:#000;padding:15px 40px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:18px;cursor:pointer;transition:background 0.3s;">
+                              Acessar Checkout
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="a-c-cont-7b6719b a-r a-c-cont">
+                    <style>
+                      .a-e-cont.atomicat-heading-title-7b6719b p:hover { -webkit-text-fill-color: unset }
+                      .a-e-cont.atomicat-heading-title-7b6719b p { text-align: center; color: #fff; background-image: unset }
+                      .a-c-cont-7b6719b > .a-e-cont { padding-top: 16px }
+                    </style>
+                    <div class="atomicat-text atomicat-element-container-7b6719b a-r atomicat-heading-title-7b6719b atomicat-text-7b6719b a-e-cont">
+                      <p class="a-i-e-cont">
+                        <span class="atomicat-random" data-min="400" data-max="700">575</span> People watching now...
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="atomicat-container-6edc430 a-b-o-cont">
+            <style>
+              .atomicat-container-6edc430 > .a-o-cont { padding-top: 3%; padding-bottom: 3% }
+              .atomicat-container-6edc430 > .a-o-cont > .a-cont { flex-direction: row }
+              .a-b-cont .atomicat-container-6edc430.a-b-o-cont { background-size: cover; background-repeat: no-repeat; background-position: center }
+            </style>
+            <div class="a-o-cont a-s-d-w6qtlf a-cont-b"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="js/WEXhLr0288309.js" charset="utf-8" id="a-js" defer="defer"></script>
+    
+    <!-- Script para detectar fim do vídeo e mostrar botão de checkout -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const player = document.querySelector('vturb-smartplayer');
+        const checkoutContainer = document.getElementById('checkout-button-container');
+        let videoEnded = false;
+        
+        if (player && checkoutContainer) {
+          // Aguarda o player estar pronto
+          player.addEventListener('player:ready', function() {
+            console.log('Player pronto - aguardando fim do vídeo');
+            
+            // Observa o evento de término do vídeo
+            player.addEventListener('player:ended', function() {
+              console.log('Vídeo finalizado!');
+              videoEnded = true;
+              checkoutContainer.style.display = 'flex';
+            });
+          });
+        }
+      });
+    </script>
+    
+    <script type="text/javascript" defer="defer">
+      document.body.appendChild(Object.assign(document.createElement("script"), {
+        src: "https://cdn.atomicatpages.net/cdn/atomicpixel.js?cache=" + Date.now(),
+        async: true,
+        defer: true
+      }));
+    </script>
+    <script type="text/javascript" defer="defer">
+      document.body.appendChild(Object.assign(document.createElement("script"), {
+        src: "https://cdn.atomicatpages.net/cdn/a.js?cache=" + Date.now(),
+        async: true,
+        defer: true
+      }));
+    </script>
+    
+    <script>
+      !function() {
+        function t(t = document) {
+          let e = window.location.search;
+          e && t.querySelectorAll("a").forEach(t => {
+            if (function t(e) {
+                let r = e.getAttribute("href") || "";
+                return !!(!r || r.startsWith("#") || /^javascript:/i.test(r))
+              }(t)) return;
+            let r = t.getAttribute("href"),
+              n;
+            try {
+              n = new URL(r, location.origin)
+            } catch {
+              return
+            }
+            ! function t(e, r) {
+              if (!r) return e;
+              let n = new URLSearchParams(e.search),
+                a = new URLSearchParams;
+              n.forEach((t, e) => {
+                a.has(e) || a.set(e, t)
+              });
+              let o = new URLSearchParams(r);
+              return o.forEach((t, e) => {
+                a.has(e) || a.set(e, t)
+              }), e.search = a.toString(), e
+            }(n, e),
+            function t(e, r, n) {
+              if (r.startsWith("//")) {
+                e.setAttribute("href", "//" + n.host + n.pathname + (n.search || "") + (n.hash || ""));
+                return
+              }
+              if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(r)) {
+                e.setAttribute("href", n.toString());
+                return
+              }
+              e.setAttribute("href", n.pathname + (n.search || "") + (n.hash || ""))
+            }(t, r, n)
+          })
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+          t();
+          let e = new MutationObserver(e => {
+            for (let r of e)
+              for (let n of r.addedNodes) 1 === n.nodeType && ("A" === n.tagName ? t(n.parentNode || document) : n.querySelectorAll && t(n))
+          });
+          e.observe(document.body, {
+            childList: !0,
+            subtree: !0
+          })
+        })
+      }();
+    </script>
+  </body>
+</html>
