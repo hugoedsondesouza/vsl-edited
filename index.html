@@ -313,67 +313,91 @@
         defer: true
       }));
     </script>
-    <script type="text/javascript" defer="defer">
-      document.body.appendChild(Object.assign(document.createElement("script"), {
-        src: "https://cdn.atomicatpages.net/cdn/a.js?cache=" + Date.now(),
-        async: true,
-        defer: true
-      }));
-    </script>
-    
     <script>
-      !function() {
-        function t(t = document) {
-          let e = window.location.search;
-          e && t.querySelectorAll("a").forEach(t => {
-            if (function t(e) {
-                let r = e.getAttribute("href") || "";
-                return !!(!r || r.startsWith("#") || /^javascript:/i.test(r))
-              }(t)) return;
-            let r = t.getAttribute("href"),
-              n;
-            try {
-              n = new URL(r, location.origin)
-            } catch {
-              return
+      document.addEventListener('DOMContentLoaded', function() {
+        // Seleção de Elementos
+        const checkoutContainer = document.getElementById('checkout-button-container');
+        const videoPlayer = document.getElementById('video-player');
+        const progressBar = document.getElementById('progress-bar');
+        const soundToggle = document.getElementById('sound-toggle');
+        const unmuteWarning = document.getElementById('unmute-warning'); // Novo seletor adicionado
+        
+        let checkoutShown = false; 
+
+        // Função para esconder o aviso de Unmute
+        function hideUnmuteWarning() {
+            if (unmuteWarning && unmuteWarning.style.display !== 'none') {
+                unmuteWarning.style.opacity = '0'; // Inicia o fade out
+                // Aguarda a transição de 0.3s (definida no CSS inline) para remover o elemento
+                setTimeout(() => {
+                    unmuteWarning.style.display = 'none';
+                }, 300);
             }
-            ! function t(e, r) {
-              if (!r) return e;
-              let n = new URLSearchParams(e.search),
-                a = new URLSearchParams;
-              n.forEach((t, e) => {
-                a.has(e) || a.set(e, t)
-              });
-              let o = new URLSearchParams(r);
-              return o.forEach((t, e) => {
-                a.has(e) || a.set(e, t)
-              }), e.search = a.toString(), e
-            }(n, e),
-            function t(e, r, n) {
-              if (r.startsWith("//")) {
-                e.setAttribute("href", "//" + n.host + n.pathname + (n.search || "") + (n.hash || ""));
-                return
-              }
-              if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(r)) {
-                e.setAttribute("href", n.toString());
-                return
-              }
-              e.setAttribute("href", n.pathname + (n.search || "") + (n.hash || ""))
-            }(t, r, n)
-          })
         }
-        document.addEventListener("DOMContentLoaded", () => {
-          t();
-          let e = new MutationObserver(e => {
-            for (let r of e)
-              for (let n of r.addedNodes) 1 === n.nodeType && ("A" === n.tagName ? t(n.parentNode || document) : n.querySelectorAll && t(n))
+
+        // Esconde checkout inicialmente
+        if (checkoutContainer) {
+          checkoutContainer.style.display = 'none';
+        }
+        
+        // Lógica do botão de som
+        if (soundToggle && videoPlayer) {
+          soundToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Chama a função para esconder o aviso
+            hideUnmuteWarning();
+
+            if (videoPlayer.muted) {
+              videoPlayer.muted = false;
+              soundToggle.textContent = '🔇';
+              soundToggle.style.background = 'rgba(0,212,255,0.8)';
+            } else {
+              videoPlayer.muted = true;
+              soundToggle.textContent = '🔊';
+              soundToggle.style.background = 'rgba(0,212,255,0.5)';
+            }
           });
-          e.observe(document.body, {
-            childList: !0,
-            subtree: !0
-          })
-        })
-      }();
+        }
+        
+        // Lógica ao clicar no vídeo
+        if (videoPlayer) {
+          videoPlayer.addEventListener('click', function() {
+            
+            // Chama a função para esconder o aviso
+            hideUnmuteWarning();
+
+            if (videoPlayer.muted) {
+              videoPlayer.muted = false;
+              if (soundToggle) {
+                soundToggle.textContent = '🔇';
+                soundToggle.style.background = 'rgba(0,212,255,0.8)';
+              }
+            }
+          });
+        }
+        
+        // Atualização da barra de progresso
+        if (videoPlayer && progressBar) {
+          videoPlayer.addEventListener('timeupdate', function() {
+            const progress = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+            progressBar.style.width = progress + '%';
+          });
+        }
+        
+        // Detecção do fim do vídeo (Delay do Botão)
+        if (videoPlayer) {
+          console.log('Video player found');
+          
+          videoPlayer.addEventListener('ended', function() {
+            console.log('Video finished!');
+            if (checkoutContainer && !checkoutShown) {
+              checkoutContainer.style.display = 'flex';
+              checkoutShown = true;
+            }
+          });
+        }
+      });
     </script>
   </body>
 </html>
